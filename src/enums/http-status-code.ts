@@ -4,4 +4,5 @@ export enum HTTPStatusCode {
   AUTO_DISPLAY = 470,
   REGULAR = 470,
   RESOURCE_NOT_FOUND = 470,
+  SERVER_ERROR = 500,
 }

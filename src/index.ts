@@ -14,6 +14,7 @@ export * from './errors/http-regular-error';
 export * from './errors/http-resource-not-found-error';
 export * from './errors/http-unauthenticated-request-error';
 export * from './errors/http-unauthorized-access-error';
+export * from './errors/http-server-error';
 
 // Intern errors
 export * from './errors/translation-not-found-error';

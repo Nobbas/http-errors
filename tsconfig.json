@@ -9,7 +9,7 @@
     "typeRoots": ["node_modules/@types", "types"],
     "outDir": "dist",
     "baseUrl": ".",
-    "lib": ["es2018", "dom"],
+    "lib": ["es2018"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": true,
@@ -26,6 +26,6 @@
       "@src/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "types/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

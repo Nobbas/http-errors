@@ -1,3 +1,5 @@
+import 'module-alias/register';
+
 export * from './enums/http-status-code';
 export * from './models/error-response-object';
 export * from './errors/http-auto-display-error';

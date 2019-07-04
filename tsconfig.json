@@ -6,7 +6,6 @@
     "moduleResolution": "node",
     "sourceMap": false,
     "declarationDir": "types",
-    "typeRoots": ["node_modules/@types", "types"],
     "outDir": "dist",
     "baseUrl": ".",
     "lib": ["es2018"],

@@ -1,0 +1,58 @@
+{
+  "name": "http-errors",
+  "version": "1.0.0",
+  "description": "Common errors to use / handles with express",
+  "main": "dist/index.js",
+  "files": [
+    "dist/",
+    "types/",
+    "src/*",
+    "tsconfig.json",
+    "tslint.json"
+  ],
+  "engines": {
+    "node": ">=10.0.0 <11.0.0",
+    "npm": ">=6.0.0 <7.0.0 "
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ts": "tsc",
+    "watch:ts": "tsc -w",
+    "clean": "rimraf dist",
+    "build": "npm run build:ts",
+    "serve": "nodemon --watch dist/ dist/index.js",
+    "start": "npm-run-all clean build serve",
+    "start:dev": "concurrently \"npm run watch:ts\" \"npm run serve\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nobbas/http-errors.git"
+  },
+  "keywords": [
+    "nodejs",
+    "typescript"
+  ],
+  "author": "Nobbas Inc.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nobbas/http-errors/issues"
+  },
+  "homepage": "https://github.com/Nobbas/http-errors#readme",
+  "_moduleAliases": {
+    "@src": "dist"
+  },
+  "dependencies": {
+    "@types/i18n": "^0.8.5",
+    "module-alias": "^2.2.0",
+    "nodemon": "^1.19.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^3.5.2"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "rimraf": "^2.6.3",
+    "tslint": "^5.17.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-eslint-rules": "^5.4.0"
+  }
+}

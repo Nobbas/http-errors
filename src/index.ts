@@ -1,5 +1,3 @@
-import 'module-alias/register';
-
 // Enums
 export * from './enums/http-error-type';
 

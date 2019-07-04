@@ -1,9 +1,9 @@
 import { Replacements } from 'i18n';
-import { HTTPStatusCode } from '@src/enums/http-status-code';
 import { TranslationNotFoundError } from './translation-not-found-error';
-import { ErrorResponseObject } from '@src/models/error-response-object';
-import { HTTPErrorType } from '@src/enums/http-error-type';
 import { InvalidTranslationKeyError } from './invalid-translation-key-error';
+import { HTTPStatusCode } from '../enums/http-status-code';
+import { HTTPErrorType } from '../enums/http-error-type';
+import { ErrorResponseObject } from '../models/error-response-object';
 
 export abstract class HTTPError extends Error {
   public status: HTTPStatusCode = HTTPStatusCode.REGULAR;

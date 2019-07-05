@@ -5,4 +5,5 @@ export enum HTTPStatusCode {
   REGULAR = 470,
   RESOURCE_NOT_FOUND = 470,
   SERVER_ERROR = 500,
+  VALIDATION_ERROR = 400,
 }

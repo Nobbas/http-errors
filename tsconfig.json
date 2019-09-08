@@ -4,7 +4,7 @@
     "resolveJsonModule": true,
     "target": "es6",
     "moduleResolution": "node",
-    "sourceMap": false,
+    "sourceMap": true,
     "declarationDir": "types",
     "outDir": "dist",
     "baseUrl": ".",

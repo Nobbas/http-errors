@@ -62,7 +62,6 @@ typings/
 
 # Project related files / folders
 dist
-types
 *.tgz
 .DS_Store
 package

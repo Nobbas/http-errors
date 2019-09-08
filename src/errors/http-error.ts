@@ -1,13 +1,12 @@
 import { Replacements } from 'i18n';
 import { TranslationNotFoundError } from './translation-not-found-error';
 import { InvalidTranslationKeyError } from './invalid-translation-key-error';
-import { HTTPStatusCode } from '../enums/http-status-code';
-import { HTTPErrorType } from '../enums/http-error-type';
-import { ErrorResponseObject } from '../models/error-response-object';
+import { BAD_REQUEST } from '../utils/error-types';
+import { ErrorResponseObject, HTTPStatus } from '../types';
 
 export abstract class HTTPError extends Error {
-  public status: HTTPStatusCode = HTTPStatusCode.REGULAR;
-  public type: HTTPErrorType = HTTPErrorType.REGULAR;
+  public status: HTTPStatus = BAD_REQUEST.status;
+  public type: string = BAD_REQUEST.type;
   public statusMessage: string = 'Nobbas error';
 
   constructor(
@@ -37,8 +36,9 @@ export abstract class HTTPError extends Error {
     }
 
     const response: ErrorResponseObject = {
-      message: translatedMessage,
       type: this.type,
+      userMessage: translatedMessage,
+      developerMessage: 'Something went wrong. Please check backend logs.',
     };
 
     const hasDetails = Object.keys(this.detail).length > 0;

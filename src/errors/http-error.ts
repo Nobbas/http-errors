@@ -28,8 +28,11 @@ export abstract class HTTPError extends Error {
     return this.translationKey.match(regex) === null;
   }
 
-  getResponseErrorObject(i18n: i18nAPI): ErrorResponseObject {
-    const translatedMessage = i18n.__(this.translationKey, this.messageParams);
+  getResponseErrorObject(translator: i18nAPI): ErrorResponseObject {
+    const translatedMessage = translator.__(
+      this.translationKey,
+      this.messageParams,
+    );
 
     if (translatedMessage === this.translationKey) {
       throw new TranslationNotFoundError(this.translationKey);

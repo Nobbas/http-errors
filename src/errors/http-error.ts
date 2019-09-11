@@ -34,8 +34,8 @@ export abstract class HTTPError extends Error {
     return this.translationKey.match(regex) === null;
   }
 
-  getResponseErrorObject(translatorFunction: Function): ErrorResponseObject {
-    const translatedMessage = translatorFunction(
+  getResponseErrorObject(translator: i18nAPI): ErrorResponseObject {
+    const translatedMessage = translator.__(
       this.translationKey,
       this.messageParams,
     );

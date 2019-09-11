@@ -1,5 +1,6 @@
 // HTTP errors
 export * from './errors/http-error';
+export * from './errors/http-bad-request-error';
 
 // Internal errors
 export * from './errors/translation-not-found-error';

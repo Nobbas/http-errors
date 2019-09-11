@@ -16,6 +16,12 @@ export abstract class HTTPError extends Error {
   ) {
     super();
     this.message = `${this.constructor.name} - ${translationKey}`;
+
+    // Maintains proper stack trace for where our error was thrown (only available on V8)
+    // ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, HTTPError);
+    }
     if (this.isInvalidTranslationKey()) {
       throw new InvalidTranslationKeyError(this.translationKey);
     }
@@ -28,8 +34,8 @@ export abstract class HTTPError extends Error {
     return this.translationKey.match(regex) === null;
   }
 
-  getResponseErrorObject(translator: i18nAPI): ErrorResponseObject {
-    const translatedMessage = translator.__(
+  getResponseErrorObject(translatorFunction: Function): ErrorResponseObject {
+    const translatedMessage = translatorFunction(
       this.translationKey,
       this.messageParams,
     );
@@ -38,10 +44,12 @@ export abstract class HTTPError extends Error {
       throw new TranslationNotFoundError(this.translationKey);
     }
 
+    const stackToDev = this.stack ? this.stack : this.toString();
+
     const response: ErrorResponseObject = {
       type: this.type,
       userMessage: translatedMessage,
-      developerMessage: 'Something went wrong. Please check backend logs.',
+      developerMessage: stackToDev,
     };
 
     const hasDetails = Object.keys(this.detail).length > 0;

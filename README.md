@@ -1,5 +1,5 @@
 # http-errors
-Common errors to use / handles with express
+Common errors to use. Handled with express.
 
 # Inspiration
 This Error handling library is inpired by error handling section of apigee document:

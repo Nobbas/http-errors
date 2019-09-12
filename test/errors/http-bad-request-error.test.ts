@@ -3,7 +3,7 @@ import { HTTPBadRequestError } from '../../src/errors/http-bad-request-error';
 import * as i18n from 'i18n';
 import * as path from 'path';
 
-let translatorObj: any = {};
+const translatorObj: any = {};
 const translationKey = 'hello';
 
 before(() => {

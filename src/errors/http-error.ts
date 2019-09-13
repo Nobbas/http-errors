@@ -2,7 +2,7 @@ import { Replacements } from 'i18n';
 import { TranslationNotFoundError } from './translation-not-found-error';
 import { InvalidTranslationKeyError } from './invalid-translation-key-error';
 import { BAD_REQUEST } from '../utils/error-types';
-import { ErrorResponseObject, HTTPStatus } from '../types';
+import { ErrorResponseObject, HTTPStatus } from '../models/models';
 
 export abstract class HTTPError extends Error {
   public status: HTTPStatus = BAD_REQUEST.status;

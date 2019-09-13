@@ -1,4 +1,4 @@
-import { ErrorType } from '../types';
+import { ErrorType } from '../types/models';
 
 export const BAD_REQUEST: ErrorType = {
   type: 'BAD_REQUEST',

@@ -16,9 +16,11 @@ before(() => {
 });
 
 describe('HTTPBadRequestError', () => {
-  it('Should create HTTPBadRequestError object with translated user message in english.', async () => {
+  it('should create HTTPBadRequestError object with translated user message in english.', async () => {
     translatorObj.setLocale('en');
-    const badRequestError = new HTTPBadRequestError(translationKey);
+    const badRequestError = new HTTPBadRequestError({
+      message: { translationKey },
+    });
     expect(badRequestError).to.be.a.instanceOf(HTTPBadRequestError);
     const respObject = badRequestError.getResponseErrorObject(translatorObj);
     expect(respObject.type).to.be.equal('BAD_REQUEST');
@@ -29,9 +31,11 @@ describe('HTTPBadRequestError', () => {
 });
 
 describe('HTTPBadRequestError', () => {
-  it('Should create HTTPBadRequestError object with translated user message in french', async () => {
+  it('should create HTTPBadRequestError object with translated user message in french', async () => {
     translatorObj.setLocale('fr');
-    const badRequestError = new HTTPBadRequestError('hello');
+    const badRequestError = new HTTPBadRequestError({
+      message: { translationKey },
+    });
     expect(badRequestError).to.be.a.instanceOf(HTTPBadRequestError);
     const respObject = badRequestError.getResponseErrorObject(translatorObj);
     expect(respObject.type).to.be.equal('BAD_REQUEST');

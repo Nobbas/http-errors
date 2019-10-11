@@ -1,6 +1,6 @@
 {
   "name": "@nobbas/http-errors",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Common errors to use / handles with express",
   "main": "dist/index.js",
   "files": [
@@ -16,7 +16,7 @@
   },
   "types": "types/index.d.ts",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "test": "mocha -r ts-node/register test/**/*.test.ts",
     "build:ts": "tsc",
     "watch:ts": "tsc -w",

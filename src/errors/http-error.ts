@@ -2,7 +2,12 @@ import { Replacements } from 'i18n';
 import { ExtendableError } from 'ts-error';
 import { TranslationNotFoundError } from './translation-not-found-error';
 import { InvalidTranslationKeyError } from './invalid-translation-key-error';
-import { ErrorResponseObject, HTTPStatus, ErrorType } from '../models/models';
+import {
+  ErrorResponseObject,
+  HTTPStatus,
+  ErrorType,
+  HTTPErrorParam,
+} from '../models/models';
 
 const isInvalidTranslationKey = (translationKey: string): boolean => {
   const word = '[a-z0-9]+';
@@ -11,18 +16,10 @@ const isInvalidTranslationKey = (translationKey: string): boolean => {
   return translationKey.match(regex) === null;
 };
 
-interface HTTPErrorParam {
-  message?: {
-    translationKey: string | null;
-    params?: Replacements;
-  };
-  detail?: Object;
-}
-export interface IHTTPError {
-  status: 400 | 401 | 403 | 404 | 500;
-  type: string;
-}
-
+/**
+ * Base HTTPError class for all HTTP Errors.
+ * No object is to be created using this class as it's apparently ABSTRACT
+ */
 export abstract class HTTPError extends ExtendableError implements ErrorType {
   public abstract status: HTTPStatus;
   public abstract type: string;
@@ -32,7 +29,7 @@ export abstract class HTTPError extends ExtendableError implements ErrorType {
   private messageParams: Replacements = {};
   private detail: Object = {};
 
-  constructor(params: Partial<HTTPErrorParam> = {}) {
+  constructor(params: HTTPErrorParam = {}) {
     super();
 
     if (params.message) {
@@ -56,6 +53,11 @@ export abstract class HTTPError extends ExtendableError implements ErrorType {
     }
   }
 
+  /**
+   * Translates and substitutes translation replacement parameters if any translationKey
+   * exists in the error that is to be sent to the end user.
+   * @param translator
+   */
   getResponseErrorObject(translator: i18nAPI): ErrorResponseObject {
     const stackToDev = this.stack ? this.stack : this.toString();
 
@@ -67,7 +69,7 @@ export abstract class HTTPError extends ExtendableError implements ErrorType {
     if (this.translationKey) {
       const translatedMessage = translator.__(
         this.translationKey,
-        this.messageParams,
+        this.messageParams
       );
 
       if (translatedMessage === this.translationKey) {
